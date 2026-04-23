@@ -25,18 +25,18 @@ class ParkingTest {
 	void test3() {
 		p = new Parking(9, 0);
 		Vehicule v = new Vehicule("1");
+		p.ajouter(v);
 		p.retirer(v, 0);
-		assertEquals(10, p.getNbPlacesLibres());
+		assertEquals(9, p.getNbPlacesLibres());
 	}
-
+ 
 	@Test
 	void test4() {
 		p = new Parking(10, 3);
 		Vehicule v = new Vehicule("1");
 		p.ajouter(v);
-		p.retirer(v, 5);
 		assertEquals(15, p.retirer(v, 5));
-		assertEquals(11, p.getNbPlacesLibres());
+		assertEquals(10, p.getNbPlacesLibres());
 
 	}
 
@@ -62,6 +62,19 @@ class ParkingTest {
 		assertEquals(false, p.contient(v1));
 		
 		
+	}
+	
+	@Test
+	void test7() {
+		Parking p1 = new Parking(100, 0); 
+		Parking p2 = new Parking(100, 0); 
+		Vehicule v = new Vehicule("1"); 
+		p1.ajouter(v); 
+		assertEquals(0,p1.retirer(v, 1)); 
+		assertThrows(IllegalArgumentException.class, () -> {
+			p2.retirer(v, 1);
+	    });
+
 	}
 
 }

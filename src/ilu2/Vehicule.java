@@ -7,5 +7,7 @@ public class Vehicule {
 		this.immatriculation = immatriculation;
 	}
 	
-	
+	/*public void abonner(Parking p) {
+		
+	}*/
 }
