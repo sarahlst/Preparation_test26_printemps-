@@ -15,13 +15,22 @@ public class Parking {
 		return nbPlacesLibres;
 	}
 
-	public void ajouter(Vehicule v) {
-		nbPlacesLibres--;
+	public boolean ajouter(Vehicule v) {
+		if ( nbPlacesLibres == 0 )
+		{
+			return false;
+		}
+		else {
+			nbPlacesLibres--;
+			return true;
+		}
+		
 	}
 
 	public int retirer(Vehicule v, int nbrHeure) {
 		nbPlacesLibres++;
 		return nbrHeure * tarifHoraire;
 	}
+	
 
 }

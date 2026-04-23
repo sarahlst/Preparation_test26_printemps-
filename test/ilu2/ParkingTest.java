@@ -39,5 +39,16 @@ class ParkingTest {
 		assertEquals(11,p.getNbPlacesLibres());
 		
 	}
+	@Test 
+	void test5() {
+		p = new Parking(10, 3); 
+		Vehicule v = new Vehicule("1"); 
+		p.ajouter(v);
+		assertEquals(true,p.ajouter(v));
+		Parking p1 = new Parking(0, 3); 
+		Vehicule v1 = new Vehicule("2"); 
+		p.ajouter(v1);
+	    assertEquals(false,p1.ajouter(v));
+	}
 
 }
