@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ParkingTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">ParkingTest (1) (23 avr. 2026 23:39:15)</a> &gt; <a href="../../index.html" class="el_group">Preparation_test26_printemps-</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">ilu2</a> &gt; <span class="el_source">ParkingTest.java</span></div><h1>ParkingTest.java</h1><pre class="source lang-java linenums">package ilu2;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+<span class="fc" id="L7">class ParkingTest {</span>
+	private Parking p;
+
+	@Test
+	void test1() {
+<span class="fc" id="L12">		p = new Parking(10, 0);</span>
+<span class="fc" id="L13">		assertEquals(10, p.getNbPlacesLibres());</span>
+<span class="fc" id="L14">	}</span>
+
+	@Test
+	void test2() {
+<span class="fc" id="L18">		p = new Parking(10, 0);</span>
+<span class="fc" id="L19">		Vehicule v = new Vehicule(&quot;1&quot;);</span>
+<span class="fc" id="L20">		p.ajouter(v);</span>
+<span class="fc" id="L21">		assertEquals(9, p.getNbPlacesLibres());</span>
+<span class="fc" id="L22">	}</span>
+
+	@Test
+	void test3() {
+<span class="fc" id="L26">		p = new Parking(9, 0);</span>
+<span class="fc" id="L27">		Vehicule v = new Vehicule(&quot;1&quot;);</span>
+<span class="fc" id="L28">		p.ajouter(v);</span>
+<span class="fc" id="L29">		p.retirer(v, 0);</span>
+<span class="fc" id="L30">		assertEquals(9, p.getNbPlacesLibres());</span>
+<span class="fc" id="L31">	}</span>
+ 
+	@Test
+	void test4() {
+<span class="fc" id="L35">		p = new Parking(10, 3);</span>
+<span class="fc" id="L36">		Vehicule v = new Vehicule(&quot;1&quot;);</span>
+<span class="fc" id="L37">		p.ajouter(v);</span>
+<span class="fc" id="L38">		assertEquals(15, p.retirer(v, 5));</span>
+<span class="fc" id="L39">		assertEquals(10, p.getNbPlacesLibres());</span>
+
+<span class="fc" id="L41">	}</span>
+
+	@Test
+	void test5() {
+<span class="fc" id="L45">		p = new Parking(10, 3);</span>
+<span class="fc" id="L46">		Vehicule v = new Vehicule(&quot;1&quot;);</span>
+<span class="fc" id="L47">		assertEquals(true, p.ajouter(v));</span>
+		
+<span class="fc" id="L49">		Parking p1 = new Parking(0, 3);</span>
+		//Vehicule v1 = new Vehicule(&quot;2&quot;);
+		//p.ajouter(v1);
+<span class="fc" id="L52">		assertEquals(false, p1.ajouter(v));</span>
+<span class="fc" id="L53">	}</span>
+
+	@Test
+	void test6() {
+<span class="fc" id="L57">		Parking p = new Parking(10, 3);  </span>
+<span class="fc" id="L58">		Vehicule v = new Vehicule(&quot;1&quot;); </span>
+<span class="fc" id="L59">		Vehicule v1 = new Vehicule(&quot;2&quot;);</span>
+<span class="fc" id="L60">		p.ajouter(v); </span>
+<span class="fc" id="L61">		assertEquals(true,p.contient(v));</span>
+<span class="fc" id="L62">		assertEquals(false, p.contient(v1));</span>
+		
+		
+<span class="fc" id="L65">	}</span>
+	
+	@Test
+	void test7() {
+<span class="fc" id="L69">		Parking p1 = new Parking(100, 0); </span>
+<span class="fc" id="L70">		Parking p2 = new Parking(100, 0); </span>
+<span class="fc" id="L71">		Vehicule v = new Vehicule(&quot;1&quot;); </span>
+<span class="fc" id="L72">		p1.ajouter(v); </span>
+<span class="fc" id="L73">		assertEquals(0,p1.retirer(v, 1)); </span>
+<span class="fc" id="L74">		assertThrows(IllegalArgumentException.class, () -&gt; {</span>
+<span class="nc" id="L75">			p2.retirer(v, 1);</span>
+<span class="nc" id="L76">	    });</span>
+
+<span class="fc" id="L78">	}</span>
+	
+	@Test
+	void test8() {
+<span class="fc" id="L82">		Parking p1 = new Parking(100, 0); </span>
+<span class="fc" id="L83">		Parking p2 = new Parking(100, 0); </span>
+<span class="fc" id="L84">		Vehicule v = new Vehicule(&quot;1&quot;); </span>
+<span class="fc" id="L85">		v.abonner(p1); </span>
+<span class="fc" id="L86">		assertEquals(true,v.estAbonne(p1));</span>
+<span class="fc" id="L87">		assertEquals(false,v.estAbonne(p2));</span>
+
+<span class="fc" id="L89">	} </span>
+	
+	@Test
+	void test9()
+	{
+<span class="fc" id="L94">		Parking p1 = new Parking(10,10,(float) 0.5);  </span>
+<span class="fc" id="L95">		Vehicule v = new Vehicule(&quot;1&quot;); </span>
+<span class="fc" id="L96">		Vehicule v1 = new Vehicule(&quot;2&quot;); </span>
+<span class="fc" id="L97">		p1.ajouter(v);</span>
+<span class="fc" id="L98">		p1.ajouter(v1);</span>
+<span class="fc" id="L99">		v.abonner(p1); </span>
+<span class="fc" id="L100">		assertEquals(15,p1.retirer(v, 3));</span>
+<span class="fc" id="L101">		assertEquals(30,p1.retirer(v1, 3));</span>
+		
+<span class="fc" id="L103">	}</span>
+	
+	@Test 
+	void test10() {
+<span class="fc" id="L107">		Parking p1 = new Parking(10,10,(float) 0.5);  </span>
+<span class="fc" id="L108">		Parking p2 = new Parking(10,10,(float) 0.2); </span>
+<span class="fc" id="L109">		Ambulance a = new Ambulance(&quot;A123&quot;);</span>
+<span class="fc" id="L110">		p1.ajouter(a);</span>
+<span class="fc" id="L111">		p2.ajouter(a);</span>
+<span class="fc" id="L112">		assertEquals(15,p1.retirer(a,3));</span>
+<span class="fc" id="L113">		assertEquals(6,p2.retirer(a,3));</span>
+<span class="fc" id="L114">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span>ParkingTest (1) (23 avr. 2026 23:39:15)</div></body></html>

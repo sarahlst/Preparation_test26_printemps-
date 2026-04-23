@@ -13,6 +13,7 @@ public class Vehicule {
 		for (int i = 0; i < abonnementVehicule.length; i++) {
 			if (abonnementVehicule[i] == null) {
 				abonnementVehicule[i] = p;
+				break;
 			}
 		}
 	}

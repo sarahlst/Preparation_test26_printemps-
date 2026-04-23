@@ -12,6 +12,7 @@ public class Parking {
 		this.nbPlacesLibres = nbPlaces;
 		this.tarifHoraire = tarif;
 		this.vehiculeGare = new Vehicule[nbPlaces];
+		this.reduction = 1.0f;
 	} 
 	
 	public Parking(int nbPlaces, int tarif, float reduction) {

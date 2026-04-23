@@ -11,4 +11,4 @@ public class Ambulance extends Vehicule {
 		return true;
 	}
 	
-}
+} 
