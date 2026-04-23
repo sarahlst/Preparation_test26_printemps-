@@ -15,6 +15,9 @@ public class Parking {
     public void ajouter(Vehicule v) {
     	nbPlacesLibres--;
 	}
+    public void retirer(Vehicule v) {
+    	nbPlacesLibres++;
+    }
 	
 	
 

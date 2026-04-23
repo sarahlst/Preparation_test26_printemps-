@@ -21,6 +21,14 @@ class ParkingTest {
 		assertEquals(9,p.getNbPlacesLibres());
 	}
 	
+	@Test
+	void test3() {
+		p = new Parking(9);
+		Vehicule v = new Vehicule("1"); 
+		p.retirer(v);
+		assertEquals(10,p.getNbPlacesLibres());
+	}
+	
 	
 
 }
