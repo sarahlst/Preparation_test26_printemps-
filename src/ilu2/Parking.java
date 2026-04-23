@@ -48,7 +48,7 @@ public class Parking {
 
         nbPlacesLibres++;
         return nbrHeure * tarifHoraire;
-
+ 
 	
 	}
 

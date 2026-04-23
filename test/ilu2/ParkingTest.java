@@ -76,5 +76,16 @@ class ParkingTest {
 	    });
 
 	}
+	
+	@Test
+	void test8() {
+		Parking p1 = new Parking(100, 0); 
+		Parking p2 = new Parking(100, 0); 
+		Vehicule v = new Vehicule("1"); 
+		v.abonner(p1); 
+		assertEquals(true,v.estAbonne(p1));
+		assertEquals(false,v.estAbonne(p2));
+
+	} 
 
 }
