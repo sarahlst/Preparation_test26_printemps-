@@ -87,5 +87,19 @@ class ParkingTest {
 		assertEquals(false,v.estAbonne(p2));
 
 	} 
+	
+	@Test
+	void test9()
+	{
+		Parking p1 = new Parking(10,10,(float) 0.5);  
+		Vehicule v = new Vehicule("1"); 
+		Vehicule v1 = new Vehicule("2"); 
+		p1.ajouter(v);
+		p1.ajouter(v1);
+		v.abonner(p1); 
+		assertEquals(15,p1.retirer(v, 3));
+		assertEquals(30,p1.retirer(v1, 3));
+		
+	}
 
 }

@@ -5,14 +5,19 @@ public class Parking {
 	private int nbPlacesLibres;
 	private int tarifHoraire;
 	private Vehicule[] vehiculeGare;
-	private int nbrVehiculeGare = 0;
+	private float reduction;
 
 	// constructeur
 	public Parking(int nbPlaces, int tarif) {
 		this.nbPlacesLibres = nbPlaces;
 		this.tarifHoraire = tarif;
 		this.vehiculeGare = new Vehicule[nbPlaces];
-	}
+	} 
+	
+	public Parking(int nbPlaces, int tarif, float reduction) {
+        this(nbPlaces, tarif); 
+        this.reduction = reduction;
+    }
 
 	public int getNbPlacesLibres() {
 		return nbPlacesLibres;
@@ -38,16 +43,22 @@ public class Parking {
 		{
                  throw new IllegalArgumentException("Ce vehicule n'est pas garé dans le Parking ");
 		}
-		
+		// on enleve la voiture 
 		for (int i = 0; i < vehiculeGare.length; i++) {
             if (v.equals(vehiculeGare[i])) {
                 vehiculeGare[i] = null; 
                 break;
             }
         }
-
+		int prixInitial = nbrHeure * tarifHoraire;
+		
+        if  (v.estAbonne(this))
+        {
+        	prixInitial = (int) (prixInitial * reduction);
+        }
         nbPlacesLibres++;
-        return nbrHeure * tarifHoraire;
+        
+        return prixInitial;
  
 	
 	}
